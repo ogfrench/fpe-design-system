@@ -1,0 +1,6 @@
+/* FPE Motion Language: animation supports hierarchy and feedback, not decoration. */
+.fpe-enter { animation:fpe-enter var(--fpe-motion-slow,380ms) var(--fpe-ease-emphasized,cubic-bezier(.16,1,.3,1)) both; }
+.fpe-underline { background:var(--fpe-gradient-brand) bottom left / 0 2px no-repeat;transition:background-size var(--fpe-motion-base,240ms) var(--fpe-ease-standard,ease); }
+.fpe-underline:is(:hover,:focus-visible) { background-size:100% 2px; }
+@keyframes fpe-enter { from {opacity:0;transform:translateY(12px)} to {opacity:1;transform:translateY(0)} }
+@media (prefers-reduced-motion:reduce) { .fpe-enter {animation:none!important;} .fpe-underline {transition:none;} }

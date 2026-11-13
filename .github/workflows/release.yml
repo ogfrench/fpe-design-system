@@ -1,0 +1,78 @@
+name: FPE first release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate site and registry
+        run: npm run build
+      - name: Run release candidate tests
+        run: npm test
+      - name: Check generated CSS is current
+        run: git diff --exit-code -- css/fpe-theme.css
+      - name: Package archives and verify contents
+        run: |
+          python3 scripts/package.py
+          cd out
+          sha256sum -c SHA256SUMS-2026.11.3.txt
+      - name: Upload validated build for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: fpe-validated-build
+          path: |
+            dist/
+            out/*-v2026.11.3.zip
+            out/SHA256SUMS-2026.11.3.txt
+          retention-days: 14
+
+  publish:
+    needs: verify
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Download release artifacts verified by same-commit job
+        uses: actions/download-artifact@v4
+        with:
+          name: fpe-validated-build
+          path: verified
+      - name: Publish first immutable version, never overwrite
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          version=$(node -p "require('./package.json').version")
+          tag="v${version}"
+          test "$version" = "2026.11.3" || { echo 'Release workflow is pinned to 2026.11.3; use a new release workflow for the next version'; exit 1; }
+          if gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "$tag already published. Refusing to overwrite existing release assets."
+            exit 0
+          fi
+          cd verified/out
+          sha256sum -c SHA256SUMS-2026.11.3.txt
+          gh release create "$tag" \
+            fpe-design-system-source-v2026.11.3.zip \
+            fpe-claude-v2026.11.3.zip \
+            fpe-chatgpt-v2026.11.3.zip \
+            SHA256SUMS-2026.11.3.txt \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "FPE Design System v2026.11.3" \
+            --notes-file "$GITHUB_WORKSPACE/docs/RELEASE_NOTES-2026.11.3.md"

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="fpe-version" content="2026.11.3" />
+  <meta name="description" content="FPE: a hypermodern design system for shadcn/ui, React and HTML. Distinctive fuchsia branding, precise components and controlled motion." />
+  <title>FPE | Design System</title>
+  <link rel="icon" href="assets/brand/fpe-mark-gradient.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/fpe-theme.css" />
+  <link rel="stylesheet" href="css/fpe-motion.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="FPE Design System, home">
+        <img class="brand-mark" src="assets/brand/fpe-mark-white.svg" alt="" width="31" height="26" />
+        <span>FPE</span>
+      </a>
+      <span class="brand-context">Design system</span>
+      <nav class="main-nav" aria-label="Main navigation" id="main-nav">
+        <a href="#foundations">Identity</a>
+        <a href="#components">Components</a>
+        <a href="#motion">Motion</a>
+        <a href="#install">Get started</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="true" aria-label="Switch to light theme"><span class="theme-icon" aria-hidden="true">◐</span><span id="theme-label">Dark</span></button>
+        <a class="github-link" href="https://github.com/ogfrench/fpe-design-system" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+        <button type="button" class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation" aria-controls="main-nav" aria-expanded="false">☰</button>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero section-wrap" id="top" aria-labelledby="hero-title">
+        <div class="hero-intro fpe-enter">
+          <h1 id="hero-title">FPE design <span>system.</span></h1>
+          <div class="hero-details">
+            <p>Brand, components and motion for interfaces built with shadcn/ui, React and the open web.</p>
+            <div class="hero-actions">
+              <a class="button-primary" href="#components">Browse components <span aria-hidden="true">↗</span></a>
+              <a class="text-link" href="#install">Installation <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="hero-preview" aria-label="FPE brand and component preview">
+          <div class="preview-brand">
+            <img src="assets/brand/fpe-mark-white.svg" width="293" height="250" alt="FPE geometric monogram in white" />
+            <div class="preview-brand-footer"><span>FPE / FORM 01</span><span>© FPE</span></div>
+          </div>
+          <div class="preview-interface">
+            <div class="preview-toolbar"><strong>Component preview</strong><span>Theme: FPE</span></div>
+            <div class="preview-body">
+              <p class="preview-heading">Made to work together.</p>
+              <p class="preview-description">Existing components. A more distinct visual language.</p>
+              <div class="preview-buttons"><button type="button" class="button-primary" id="preview-action">Create project <span aria-hidden="true">↗</span></button><a class="button-outline" href="#components">View components</a></div>
+              <div class="preview-control"><label for="preview-email">Email address</label><input type="email" id="preview-email" placeholder="you@company.com" /></div>
+              <p class="preview-response" id="preview-response" role="status" aria-live="polite">A real interface, not an illustration.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="foundations" class="content-section section-wrap" aria-labelledby="foundations-title">
+        <div class="section-heading"><h2 id="foundations-title">Identity<span>.</span></h2><p>The original monogram, with gradients as a deliberate brand treatment.</p></div>
+        <div class="logo-gallery">
+          <article class="logo-tile logo-tile-primary"><img src="assets/brand/fpe-mark-gradient.svg" alt="Signature FPE monogram in a fuchsia-to-violet gradient" width="117" height="100" /><span>Signature gradient</span></article>
+          <article class="logo-tile logo-tile-black"><img src="assets/brand/fpe-mark-white.svg" alt="White FPE monogram on black" width="117" height="100" /><span>White on black</span></article>
+          <article class="logo-tile logo-tile-white"><img src="assets/brand/fpe-mark-black.svg" alt="Black FPE monogram on white" width="117" height="100" /><span>Black on white</span></article>
+        </div>
+        <div class="foundation-grid">
+          <div class="foundation-panel colors-panel"><h3>Color</h3><p>Gradient-led fuchsia for the brand. Black and white for the interface.</p>
+            <div class="swatch-grid">
+              <div class="swatch"><span class="swatch-bright"></span><strong>Signature</strong><small>Fuchsia / violet</small></div>
+              <div class="swatch"><span class="swatch-gradient"></span><strong>Depth</strong><small>Fuchsia / black</small></div>
+              <div class="swatch"><span class="swatch-black"></span><strong>Black</strong><small>#000000</small></div>
+              <div class="swatch"><span class="swatch-white"></span><strong>White</strong><small>#FFFFFF</small></div>
+            </div>
+          </div>
+          <div class="foundation-panel type-panel"><h3>Typography</h3><div class="type-display" aria-label="Typography specimens"><span class="type-big">Aa<span>.</span></span><span class="type-mono">IBM Plex Sans<br />IBM Plex Mono<br />0123456789</span></div><p>IBM Plex Sans and Mono. A deliberate scale, readable leading and restrained tracking.</p></div>
+        </div>
+      </section>
+
+      <section id="components" class="content-section section-wrap" aria-labelledby="components-title">
+        <div class="section-heading"><h2 id="components-title">Components<span>.</span></h2><p>Established shadcn primitives, with FPE styling. The following are native HTML specimens.</p></div>
+        <div class="component-grid">
+          <article class="specimen specimen-controls"><h3>Actions</h3><div class="demo-buttons"><button type="button" class="button-primary sample-button" id="demo-action">Primary action <span aria-hidden="true">↗</span></button><button type="button" class="button-outline sample-button">Secondary</button><button type="button" class="button-ghost sample-button">Text action →</button></div><p class="specimen-caption" id="demo-feedback" role="status" aria-live="polite">Try the interaction.</p></article>
+          <article class="specimen specimen-forms"><h3>Inputs</h3><label for="sample-email" class="field-label">Email address</label><div class="input-row"><input id="sample-email" type="email" placeholder="name@example.com" autocomplete="off"/><span aria-hidden="true">↗</span></div><label class="checkbox-row"><input type="checkbox" checked /> <span>Receive product updates</span></label></article>
+          <article class="specimen specimen-states"><h3>States</h3><div class="badge-row"><span class="pill pill-pink">New release</span><span class="pill pill-neutral">In review</span><span class="pill pill-neutral">Archived</span></div><p class="specimen-caption">State is conveyed through text, shape and contrast, never through color alone.</p></article>
+        </div>
+      </section>
+
+      <section id="motion" class="content-section section-wrap" aria-labelledby="motion-title">
+        <div class="section-heading"><h2 id="motion-title">Motion<span>.</span></h2><p>Responsive interactions, intelligible transitions and selective brand expression.</p></div>
+        <div class="motion-grid">
+          <div class="motion-demo"><div class="motion-demo-stage"><div class="motion-object motion-one"></div></div><strong>Interaction</strong><span>160 ms · ease-out</span></div>
+          <div class="motion-demo"><div class="motion-demo-stage"><div class="motion-object motion-two"></div></div><strong>Transition</strong><span>380 ms · emphasized</span></div>
+          <div class="motion-demo"><div class="motion-demo-stage"><div class="motion-object motion-three"></div></div><strong>Brand expression</strong><span>720 ms · expressive</span></div>
+        </div>
+        <p class="motion-note">Demonstrations respect reduced-motion settings.</p>
+      </section>
+
+      <section id="install" class="content-section section-wrap" aria-labelledby="install-title">
+        <div class="section-heading"><h2 id="install-title">Installation<span>.</span></h2><p>Apply the theme to your existing shadcn project. Branded blocks are optional.</p></div>
+        <div class="install-grid">
+          <article class="terminal"><div class="terminal-header"><strong>FPE theme</strong><button type="button" data-copy-target="install-theme">Copy</button></div><pre><code id="install-theme">npx shadcn@latest add ogfrench/fpe-design-system/fpe-theme</code></pre><p>Review the registry changes before installing. Available after the first approved release.</p></article>
+          <article class="terminal"><div class="terminal-header"><strong>FPE hero</strong><button type="button" data-copy-target="install-hero">Copy</button></div><pre><code id="install-hero">npx shadcn@latest add ogfrench/fpe-design-system/fpe-hero</code></pre><p>Optional brand composition. Native shadcn controls stay in charge of behavior.</p></article>
+        </div>
+        <div class="integration-footer"><p>One identity for HTML, React, Next.js, Figma, Claude and ChatGPT.</p><a href="https://github.com/ogfrench/fpe-design-system" target="_blank" rel="noopener noreferrer">View source ↗</a></div>
+      </section>
+    </main>
+    <footer class="site-footer section-wrap"><span class="design-credit">Designed by François<svg class="design-credit-mark" viewBox="0 0 293 250" fill="none" focusable="false" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M0 0H293V148H168V205H293V250H124V148H46V102H124V45H0Z M168 45H249V102H168Z" /></svg></span></footer>
+  </div>
+  <div id="toast" role="status" aria-live="polite" class="toast" hidden></div>
+</body>
+</html>

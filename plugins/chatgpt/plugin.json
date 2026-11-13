@@ -1,0 +1,34 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "fpe-design-system",
+  "version": "2026.11.3",
+  "description": "FPE Hypermodern Expressive brand and shadcn-compatible design workflow, for web, presentation and HTML outputs.",
+  "author": {
+    "name": "FPE"
+  },
+  "repository": "https://github.com/ogfrench/fpe-design-system",
+  "license": "MIT",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "FPE Design System",
+        "shortDescription": "Design with FPE identity",
+        "longDescription": "Build FPE-branded shadcn/React apps, responsive HTML, motion systems and presentations using shared design tokens and reusable standards.",
+        "developerName": "FPE",
+        "category": "Productivity",
+        "capabilities": [],
+        "defaultPrompt": [
+          "Create an FPE-branded shadcn application using my existing project patterns.",
+          "Review this interface against the FPE design-system and motion guidelines.",
+          "Build an FPE-branded responsive HTML page with accessible animations."
+        ],
+        "logo": "./assets/fpe-icon-light.svg",
+        "logoDark": "./assets/fpe-icon-dark.svg",
+        "composerIcon": "./assets/fpe-icon-light.svg",
+        "brandColor": "#F23D9F",
+        "composerIconDark": "./assets/fpe-icon-dark.svg",
+        "brandColorDark": "#F23D9F"
+      }
+    }
+  }
+}
