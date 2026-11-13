@@ -72,6 +72,10 @@ docs/                   Architecture, compatibility, motion, QA
 
 FPE uses calendar versioning (`YYYY.M.RELEASE`), beginning with `2026.11.3`. The final component counts releases within a month, not calendar days. Month is unpadded to comply with strict three-segment SemVer parsers used by plugin clients and npm. The root package, token metadata, and Claude/ChatGPT plugin manifests must share one version. See [versioning policy](docs/versioning.md).
 
+## Engineering with DUNE
+
+Start with the [Product Passport](docs/product-passport/README.md) and [AGENTS.md](AGENTS.md); use the [full DUNE handbook](https://github.com/ogfrench/agentic-coding-setup/blob/main/docs/dune.md) and [Agentic Workflow plugin](https://github.com/ogfrench/agentic-coding-setup/tree/main/plugins/agent-workflow) to navigate code, test real behavior and reconcile evidence. These links do not install the plugin or prove consumer compatibility.
+
 ## Governance
 
 - No third-party font binaries or paid shadcn assets bundled.

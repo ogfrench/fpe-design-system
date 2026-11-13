@@ -1,6 +1,6 @@
 # FPE calendar versioning (CalVer)
 
-FPE uses **`YYYY.M.RELEASE`**, a three-number form of CalVer that is also syntactically valid as a strict semantic version. For example, the first November 2026 release is **`2026.11.3`**, followed by `2026.11.2` for an additional release that same month. The first December 2026 release is `2026.12.1`. March 2027 is `2027.3.1`, **not** `2027.03.1`, because leading-zero numeric segments are rejected by SemVer-based plugin and npm parsers.
+FPE uses **`YYYY.M.RELEASE`**, a three-number form of CalVer that is also syntactically valid as a strict semantic version. For example, the first November 2026 release is **`2026.11.3`**, followed by `2026.11.4` for an additional release that same month. The first December 2026 release is `2026.12.1`. March 2027 is `2027.3.1`, **not** `2027.03.1`, because leading-zero numeric segments are rejected by SemVer-based plugin and npm parsers.
 
 The final component is a **monthly release sequence**, not a patch indicator or a calendar day. A new year or month resets the sequence to 1. A publication must not reuse a released version. Tags use `vYYYY.M.RELEASE` and must refer to a reviewed source commit.
 
