@@ -15,7 +15,7 @@ See [AGENTS.md](../../AGENTS.md) for the project's DUNE entrypoint and the [comp
 | Add shadcn theme and optional brand blocks | `registry.json`, `registry/fpe-logo.tsx`, `registry/fpe-hero.tsx`, generated `dist/r/` | Registry and token tests. Actual Next.js/Vite, Base UI/Radix installation/SSR/keyboard acceptance remains separately tracked in `docs/compatibility.md`. |
 | Reuse approved brand marks | `assets/brand/*.svg`, `LICENSES/BRAND-ASSETS.md` | Validate logo geometry and rights; published MIT code does not grant all brand-asset rights. |
 | Install Claude or ChatGPT design instructions | `plugins/claude/`, `plugins/chatgpt/`, `scripts/package.py` | Package structure, manifest/version parity and checksums. Real-host installation/activation must be verified separately. |
-| Publish a versioned release and static site | `.github/workflows/ci.yml`, `.github/workflows/release.yml`, `netlify.toml`, `package.json` | CI, exact SHA and tagged assets. The existing release workflow is specifically pinned to `2026.11.3`; it is not a general-purpose next-release procedure. |
+| Publish a versioned release and static site | `.github/workflows/ci.yml`, `.github/workflows/release.yml`, `netlify.toml`, `package.json` | CI, exact SHA and tagged assets. The release workflow publishes the `package.json` version on each merge to `main` and refuses to overwrite an existing tag. |
 
 ## Paved path and invariants
 
@@ -51,7 +51,7 @@ The token-to-output ownership and release constraints above remain authoritative
 | Reference site or animations | `site/`, `css/fpe-motion.css` and generated `dist/` | Browser at mobile/desktop plus reduced-motion and keyboard behavior; a static build is not visual or accessibility proof |
 | shadcn registry or branded components | `registry.json`, `registry/`, `tests/system.test.mjs` | Install in the target Next.js/Vite/shadcn stack and verify SSR, icons, keyboard/interactive states; record results in `docs/compatibility.md` |
 | Claude/ChatGPT plugin files | `plugins/claude/`, `plugins/chatgpt/`, `scripts/package.py` | `npm run package`, ZIP/checksum/manifest/version parity and **separate actual host install/activation** |
-| Version or release changes | `.github/workflows/ci.yml`, `release.yml`, versioned manifests | Match source SHA, artifact contents and rights; the existing first-release workflow is pinned to `2026.11.3` and must not be reinterpreted as a generic release job |
+| Version or release changes | `.github/workflows/ci.yml`, `release.yml`, versioned manifests | Match source SHA, artifact contents and rights; the release workflow publishes whatever version `package.json` holds on `main`, so the version must be bumped only for an intended release |
 
 ### Change and evidence procedure
 

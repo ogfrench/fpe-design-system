@@ -1,4 +1,4 @@
-name: FPE first release
+name: FPE release
 
 on:
   push:
@@ -10,6 +10,8 @@ permissions:
 jobs:
   verify:
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -17,6 +19,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Read release version
+        id: version
+        run: echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
       - name: Generate site and registry
         run: npm run build
       - name: Run release candidate tests
@@ -27,15 +32,15 @@ jobs:
         run: |
           python3 scripts/package.py
           cd out
-          sha256sum -c SHA256SUMS-2026.11.3.txt
+          sha256sum -c "SHA256SUMS-${{ steps.version.outputs.version }}.txt"
       - name: Upload validated build for review
         uses: actions/upload-artifact@v4
         with:
           name: fpe-validated-build
           path: |
             dist/
-            out/*-v2026.11.3.zip
-            out/SHA256SUMS-2026.11.3.txt
+            out/*-v${{ steps.version.outputs.version }}.zip
+            out/SHA256SUMS-${{ steps.version.outputs.version }}.txt
           retention-days: 14
 
   publish:
@@ -44,6 +49,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      VERSION: ${{ needs.verify.outputs.version }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -53,26 +60,26 @@ jobs:
         with:
           name: fpe-validated-build
           path: verified
-      - name: Publish first immutable version, never overwrite
+      - name: Publish immutable version, never overwrite
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           version=$(node -p "require('./package.json').version")
+          test "$version" = "$VERSION" || { echo "::error::package.json version changed between jobs"; exit 1; }
+          [[ "$version" =~ ^20[0-9]{2}\.(1[0-2]|[1-9])\.[0-9]+$ ]] || { echo "::error::Not a CalVer version: $version"; exit 1; }
           tag="v${version}"
-          test "$version" = "2026.11.3" || { echo 'Release workflow is pinned to 2026.11.3; use a new release workflow for the next version'; exit 1; }
           if gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
             echo "$tag already published. Refusing to overwrite existing release assets."
             exit 0
           fi
-          cd verified/out
-          sha256sum -c SHA256SUMS-2026.11.3.txt
+          (cd verified/out && sha256sum -c "SHA256SUMS-${version}.txt")
           gh release create "$tag" \
-            fpe-design-system-source-v2026.11.3.zip \
-            fpe-claude-v2026.11.3.zip \
-            fpe-chatgpt-v2026.11.3.zip \
-            SHA256SUMS-2026.11.3.txt \
+            "verified/out/fpe-design-system-source-v${version}.zip" \
+            "verified/out/fpe-claude-v${version}.zip" \
+            "verified/out/fpe-chatgpt-v${version}.zip" \
+            "verified/out/SHA256SUMS-${version}.txt" \
             --repo "$GITHUB_REPOSITORY" \
             --target "$GITHUB_SHA" \
-            --title "FPE Design System v2026.11.3" \
-            --notes-file "$GITHUB_WORKSPACE/docs/RELEASE_NOTES-2026.11.3.md"
+            --title "FPE Design System v${version}" \
+            --notes-file "docs/RELEASE_NOTES-${version}.md"
