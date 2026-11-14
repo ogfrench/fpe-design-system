@@ -14,4 +14,4 @@ The [DUNE Engineering handbook](https://github.com/ogfrench/agentic-coding-setup
 
 ## Non-negotiable boundaries
 
-Preserve brand-asset rights, source-derived CSS/registry parity and the existing release workflow safeguards. Do not introduce parallel shadcn primitives, solid-fuchsia UI fills or unauthorized proprietary fonts. The current first-release GitHub workflow is pinned to `2026.11.3`; ordinary PR approval does not authorize another release. Do not bypass its tag/asset checks or assume plugin installation from a source merge.
+Preserve brand-asset rights, source-derived CSS/registry parity and the existing release workflow safeguards. Do not introduce parallel shadcn primitives, solid-fuchsia UI fills or unauthorized proprietary fonts. The GitHub release workflow publishes the version in `package.json` on each merge to `main`, and refuses to overwrite an existing tag. A version bump merged to `main` is a release: bump only for an intended release, and do not bypass its tag/asset checks or assume plugin installation from a source merge.
