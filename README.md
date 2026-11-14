@@ -2,7 +2,7 @@
 
 **Hypermodern Expressive**: FPE brand identity, a shadcn/ui-compatible color and type layer, deliberate motion, black/white identity with controlled fuchsia-to-violet gradients, a responsive HTML reference, and reusable Claude/ChatGPT skills.
 
-> **Initial foundation release: v2026.11.3.** FPE is a theme, brand asset kit, interactive HTML guide and optional React blocks. It is not a replacement for shadcn/ui. Consumer integration and host acceptance are tracked separately in the compatibility guide.
+> **Published foundation release: [v2026.11.3](https://github.com/ogfrench/fpe-design-system/releases/tag/v2026.11.3)** (13 November 2026). GitHub provides source, Claude and ChatGPT ZIP artifacts with checksums. FPE remains a theme, brand asset kit, interactive HTML guide and optional React blocks, not a replacement for shadcn/ui. Published archives do not establish end-to-end consumer installation or real assistant-host activation; see the [compatibility matrix](docs/compatibility.md).
 
 ## What is included
 
@@ -33,7 +33,7 @@ npx shadcn@latest view ogfrench/fpe-design-system/fpe-theme
 npx shadcn@latest add ogfrench/fpe-design-system/fpe-theme --dry-run
 ```
 
-After the release is merged:
+The versioned registry source is on `main`; try these only in a disposable shadcn application after inspecting the proposed file changes:
 
 ```sh
 npx shadcn@latest add ogfrench/fpe-design-system/fpe-theme
@@ -41,7 +41,7 @@ npx shadcn@latest add ogfrench/fpe-design-system/fpe-logo
 npx shadcn@latest add ogfrench/fpe-design-system/fpe-hero
 ```
 
-**These commands work only after `registry.json` and the item sources are on `main`.** For reproducible deployments, pin the registry item to a release tag or full commit SHA. FPE does not replace shadcn's Button, Dialog, Input, or other established primitives. Use shadcn components as-is and let semantic CSS tokens theme them.
+**The registry metadata and item sources are on `main`, but cross-framework installation has not been independently proven.** For reproducible deployments, pin the registry item to a release tag or full commit SHA. FPE does not replace shadcn's Button, Dialog, Input, or other established primitives. Use shadcn components as-is and let semantic CSS tokens theme them.
 
 **Framework target:** Next.js App Router and Vite + React using either Base UI or Radix shadcn components. The reference HTML is framework-free. These targets require consumer-level smoke tests before claiming full compatibility.
 
@@ -74,7 +74,7 @@ FPE uses calendar versioning (`YYYY.M.RELEASE`), beginning with `2026.11.3`. The
 
 ## Engineering with DUNE
 
-Start with the [Product Passport](docs/product-passport/README.md) and [AGENTS.md](AGENTS.md); use the [full DUNE handbook](https://github.com/ogfrench/agentic-coding-setup/blob/main/docs/dune.md) and [Agentic Workflow plugin](https://github.com/ogfrench/agentic-coding-setup/tree/main/plugins/agent-workflow) to navigate code, test real behavior and reconcile evidence. These links do not install the plugin or prove consumer compatibility.
+Start with the [Product Passport](docs/product-passport/README.md), [AGENTS.md](AGENTS.md) and [compatibility matrix](docs/compatibility.md); use the [full DUNE handbook](https://github.com/ogfrench/agentic-coding-setup/blob/main/docs/dune.md) and [Agentic Workflow plugin](https://github.com/ogfrench/agentic-coding-setup/tree/main/plugins/agent-workflow) to navigate code, test real behavior and reconcile evidence. These links do not install the plugin or prove consumer compatibility.
 
 ## Governance
 
