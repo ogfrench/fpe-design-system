@@ -187,7 +187,12 @@ test('every generated FPE page carries the correctly matched monochrome Françoi
     assert.ok(html.includes(`d="${master}"`), 'Credit uses the canonical brand geometry');
     assert.match(html, /fill="currentColor"/);
   }
-  assert.match(read('site/styles.css'), /\.design-credit-mark \{[^}]*fill: currentColor;/);
+  const footerStyles = read('site/styles.css');
+  assert.match(footerStyles, /\.design-credit \{[^}]*align-items: baseline;/);
+  assert.match(footerStyles, /\.design-credit-mark \{[^}]*height: 9px;/);
+  assert.match(footerStyles, /\.design-credit-mark \{[^}]*fill: currentColor;/);
+  assert.match(component, /inline-flex items-baseline/);
+  assert.match(component, /h-\[9px\]/);
   assert.match(component, /export function FpeCredit/);
   assert.match(component, /variant === "inherit" \? "currentColor"/);
   assert.match(component, /Designed by François/);

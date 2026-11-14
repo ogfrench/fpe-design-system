@@ -37,9 +37,9 @@ export function FpeLogo({ variant = "gradient", title, ...props }: FpeLogoProps)
 /** Optional byline for FPE-authored pages. Not a license attribution requirement. */
 export function FpeCredit() {
   return (
-    <span className="inline-flex items-center gap-[.42em] font-sans text-[13px] font-medium leading-[1.4] text-current whitespace-nowrap">
+    <span className="inline-flex items-baseline gap-[.42em] font-sans text-[13px] font-medium leading-[1.4] text-current whitespace-nowrap">
       Designed by François
-      <FpeLogo variant="inherit" className="h-[.88em] w-auto shrink-0" />
+      <FpeLogo variant="inherit" className="h-[9px] w-auto shrink-0" />
     </span>
   )
 }
