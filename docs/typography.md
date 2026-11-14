@@ -23,6 +23,6 @@ Next.js consumers should use `next/font/google` to provide IBM Plex font faces a
 
 ## Byline and brand credit
 
-For FPE-authored pages, the footer contains only **Designed by François** followed by the corrected FPE mark, at roughly the same cap height, using `currentColor`. No duplicated FPE wordmark, version text, or badge in this footer. The mark should be decorative (`aria-hidden="true"`), with the readable byline represented as text. The credit should inherit the footer's text color in dark and light modes, not introduce a colored logo or a boxed badge.
+For FPE-authored pages, the footer contains only **Designed by François** followed by the corrected FPE mark, 9 px high and aligned to the font baseline, using `currentColor`. No duplicated FPE wordmark, version text, or badge in this footer. The mark should be decorative (`aria-hidden="true"`), with the readable byline represented as text. The credit should inherit the footer's text color in dark and light modes, not introduce a colored logo or a boxed badge.
 
 The website uses `.design-credit` and `.design-credit-mark`, and the shadcn-compatible logo registry item exports optional `FpeCredit`. Attribution is a brand/presentation pattern, **not a requirement on external consumers** of MIT-licensed FPE code.
