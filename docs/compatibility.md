@@ -9,9 +9,11 @@
 | Next.js App Router | Registry install, SSR, hydration | Not yet consumer-tested |
 | Vite + React | Registry install and production build | Not yet consumer-tested |
 | Plain HTML | No-framework reference and offline file | Built; browser QA required |
-| Claude | Self-contained skill and plugin | Package validation required |
-| ChatGPT | Private skills-only plugin | Creation/activation required |
+| Claude | Self-contained skill and plugin | v2026.11.3 ZIP published; actual Claude installation and task acceptance unverified |
+| ChatGPT | Private skills-only plugin | v2026.11.3 ZIP published; private installation/activation remains separate and unverified |
 | Figma Starter | Visual reference, limited native modes | Staging exists; audit ongoing |
+
+GitHub [v2026.11.3](https://github.com/ogfrench/fpe-design-system/releases/tag/v2026.11.3) contains Claude and ChatGPT plugin archives and source/checksum assets. Publication establishes archive availability only; the source build, consumer fixture tests, and actual assistant-host behavior must be recorded independently.
 
 “100% compatible” will only apply to a specific validated matrix at a specific release. Do not infer support for all upstream versions, every headless primitive behavior, or unspecified frameworks from the presence of CSS tokens.
 
