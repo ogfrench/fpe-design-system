@@ -38,3 +38,26 @@ See [AGENTS.md](../../AGENTS.md) for the project's DUNE entrypoint and the [comp
 For any future substantive PR, record (in the PR, not as an invented permanent success claim) its outcome, affected code owner, exact SHA, positive and negative tests, rendered/host evidence, `passed|failed|blocked|not_run` statuses, passport change and deployment/release decision.
 
 Privacy and license boundaries always override convenience. Generated artifacts belong to their generating source; reports and screenshots do not substitute for application behavior.
+
+---
+
+## Focused verification matrix (source-reviewed 14 November 2026)
+
+The token-to-output ownership and release constraints above remain authoritative. These are the least-cost checks that prove **different** failure classes without replacing actual consumer or host acceptance.
+
+| Change | Focused source proof | Additional acceptance |
+| --- | --- | --- |
+| Brand token, semantic alias, light/dark theme | `tokens/fpe.tokens.json` → `scripts/build.mjs` → generated `css/fpe-theme.css`; run `npm run check` | Check invalid/missing token/alias, readability, contrast and real light/dark rendered UI |
+| Reference site or animations | `site/`, `css/fpe-motion.css` and generated `dist/` | Browser at mobile/desktop plus reduced-motion and keyboard behavior; a static build is not visual or accessibility proof |
+| shadcn registry or branded components | `registry.json`, `registry/`, `tests/system.test.mjs` | Install in the target Next.js/Vite/shadcn stack and verify SSR, icons, keyboard/interactive states; record results in `docs/compatibility.md` |
+| Claude/ChatGPT plugin files | `plugins/claude/`, `plugins/chatgpt/`, `scripts/package.py` | `npm run package`, ZIP/checksum/manifest/version parity and **separate actual host install/activation** |
+| Version or release changes | `.github/workflows/ci.yml`, `release.yml`, versioned manifests | Match source SHA, artifact contents and rights; the existing first-release workflow is pinned to `2026.11.3` and must not be reinterpreted as a generic release job |
+
+### Change and evidence procedure
+
+1. Modify the canonical token or registry owner, never generated CSS or copied consumers as a workaround. Prove one known good and one invalid case when touching parsing, component API or asset boundaries.
+2. Use `npm run check` for token/build changes; only add `npm run package` when packaging/versioned files change. For visible output use real browser inspection, and for consumer/library compatibility use actual installation rather than a screenshot alone.
+3. Maintain a release trigger matrix: `ci.yml` runs validation on PR/main; `release.yml` performs its pinned first-release verification on main. Do not remove `push` just to reduce cost without checking required statuses and publication coupling.
+4. Record exact SHA, source token/version, generated artifact, test commands, real consumer/host result and **passed / failed / blocked / not_run** in the PR. Preserve licensed brand assets and fonts.
+
+**Review evidence:** inspected generator, tests, scripts, release workflow and latest published GitHub release (`v2026.11.3`). No build, package generation, browser, consuming-app or host test was executed as part of this documentation update.
