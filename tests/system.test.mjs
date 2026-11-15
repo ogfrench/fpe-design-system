@@ -312,3 +312,11 @@ test('release tag lookup uses the command exit status, not a 404 response body',
     execFileSync('bash', ['-c', script], { stdio: 'pipe' });
   }
 });
+
+
+test('routine CI and dependency policy updates do not trigger an immutable FPE republish', () => {
+  const workflow = read('.github/workflows/release.yml');
+  const triggers = workflow.split('\npermissions:')[0];
+  assert.match(triggers, /push:\s*\n\s*branches:\s*\[main\]/);
+  assert.match(triggers, /paths-ignore:\s*\n\s*-\s*'\.github\/\*\*'\s*\n\s*-\s*'socket\.yml'/);
+});
