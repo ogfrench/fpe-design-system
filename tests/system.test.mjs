@@ -274,8 +274,17 @@ test('handwritten FPE source contains no explanatory comments', () => {
       const text = line.trimStart();
       const codeComment = /^(\/\/|\/\*|\*\s)/.test(text);
       const pythonComment = path.endsWith('.py') && /^#(?!\!)/.test(text);
-      const directive = /^\/\/\s*(?:@ts-|eslint-|prettier-ignore)|^\/\*\s*(?:!|@license)|^#\s*(?:type:|noqa|pragma:|coding[:=])/.test(text);
+      const directive = /^\/\/\s*(?:@ts-|eslint-|prettier-ignore|SPDX-|Copyright\b)|^\/\*\s*(?:!|@license|SPDX-|Copyright\b)|^\*\s*(?:SPDX-|Copyright\b)|^#\s*(?:type:|noqa|pragma:|coding[:=]|SPDX-|Copyright\b)/.test(text);
       assert.ok(!(codeComment || pythonComment) || directive, `${path}:${i + 1}: explanatory comment`);
     }
   }
+});
+
+
+test('code-first check accepts legal identifiers but still rejects ordinary explanations', () => {
+  const directive = /^\/\/\s*(?:@ts-|eslint-|prettier-ignore|SPDX-|Copyright\b)|^\/\*\s*(?:!|@license|SPDX-|Copyright\b)|^\*\s*(?:SPDX-|Copyright\b)|^#\s*(?:type:|noqa|pragma:|coding[:=]|SPDX-|Copyright\b)/;
+  for (const notice of ['// SPDX-License-Identifier: MIT', '// SPDX-FileCopyrightText: 2026 contributors', '# SPDX-License-Identifier: MPL-2.0']) {
+    assert.match(notice, directive);
+  }
+  assert.doesNotMatch('// unnecessary explanation', directive);
 });
