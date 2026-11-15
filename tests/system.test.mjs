@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import { strict as assert } from 'node:assert';
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
 const read = (name) => readFileSync(new URL(`../${name}`, import.meta.url), 'utf8');
 const token = JSON.parse(read('tokens/fpe.tokens.json'));
 const registry = JSON.parse(read('registry.json'));
@@ -287,4 +288,27 @@ test('code-first check accepts legal identifiers but still rejects ordinary expl
     assert.match(notice, directive);
   }
   assert.doesNotMatch('// unnecessary explanation', directive);
+});
+
+
+test('release tag lookup uses the command exit status, not a 404 response body', () => {
+  const source = read('.github/workflows/release.yml');
+  const start = source.indexOf('          if existing_tag_sha=$(');
+  const end = source.indexOf('          if [ -n "$existing_tag_sha" ]', start);
+  assert.ok(start >= 0 && end > start);
+  const lookup = source.slice(start, end);
+  for (const { status, response, expected } of [
+    { status: 1, response: '{"message":"Not Found"}', expected: '' },
+    { status: 0, response: '0123456789abcdef0123456789abcdef01234567', expected: '0123456789abcdef0123456789abcdef01234567' }
+  ]) {
+    const script = [
+      'set -euo pipefail',
+      'GITHUB_REPOSITORY=test/repo',
+      'tag=v2026.11.5',
+      `gh() { printf '%s\\n' '${response}'; return ${status}; }`,
+      lookup,
+      `test "$existing_tag_sha" = '${expected}'`
+    ].join(String.fromCharCode(10));
+    execFileSync('bash', ['-c', script], { stdio: 'pipe' });
+  }
 });
