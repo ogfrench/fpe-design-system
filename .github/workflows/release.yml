@@ -85,8 +85,15 @@ jobs:
             echo "$tag is already published for this exact commit with all four assets. No overwrite."
             exit 0
           fi
+          if gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$tag" --silent >/dev/null 2>&1; then
+            echo "::error::$tag exists without a published release. Refusing to attach new assets to an existing tag."
+            exit 1
+          fi
           (cd verified/out && sha256sum -c "SHA256SUMS-${version}.txt")
+          gh api --method POST "repos/$GITHUB_REPOSITORY/git/refs" \
+            -f ref="refs/tags/$tag" -f sha="$GITHUB_SHA" --silent
           gh release create "$tag" \
+            --verify-tag \
             "verified/out/fpe-design-system-source-v${version}.zip" \
             "verified/out/fpe-claude-v${version}.zip" \
             "verified/out/fpe-chatgpt-v${version}.zip" \
