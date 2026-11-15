@@ -261,3 +261,21 @@ test('approved primary actions use a real gradient keyline, not a filled gradien
   assert.match(hero, /border-transparent/);
   assert.match(docs, /1px perimeter/);
 });
+
+
+test('handwritten FPE source contains no explanatory comments', () => {
+  const paths = [
+    'site/app.js', 'site/styles.css', 'css/fpe-motion.css',
+    'registry/fpe-hero.tsx', 'registry/fpe-logo.tsx',
+    'scripts/build.mjs', 'scripts/package.py'
+  ];
+  for (const path of paths) {
+    for (const [i, line] of read(path).split('\n').entries()) {
+      const text = line.trimStart();
+      const codeComment = /^(\/\/|\/\*|\*\s)/.test(text);
+      const pythonComment = path.endsWith('.py') && /^#(?!\!)/.test(text);
+      const directive = /^\/\/\s*(?:@ts-|eslint-|prettier-ignore)|^\/\*\s*(?:!|@license)|^#\s*(?:type:|noqa|pragma:|coding[:=])/.test(text);
+      assert.ok(!(codeComment || pythonComment) || directive, `${path}:${i + 1}: explanatory comment`);
+    }
+  }
+});
