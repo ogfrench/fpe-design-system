@@ -17,7 +17,7 @@ catch { applyTheme('dark'); }
 themeButton.addEventListener('click', () => {
   const next = doc.dataset.theme === 'dark' ? 'light' : 'dark';
   applyTheme(next);
-  try { localStorage.setItem('fpe-theme', next); } catch { /* storage may be disabled */ }
+  try { localStorage.setItem('fpe-theme', next); } catch {}
 });
 menuButton.addEventListener('click', () => {
   const expanded = menuButton.getAttribute('aria-expanded') === 'true';
@@ -49,7 +49,6 @@ document.querySelector('#demo-action').addEventListener('click', () => {
   document.querySelector('#demo-feedback').textContent = 'Action confirmed. This control is interactive.';
 });
 
-// The hero's control specimen is usable, not an ornamental screenshot.
 document.querySelector('#preview-action').addEventListener('click', () => {
   document.querySelector('#preview-response').textContent = 'Project action confirmed.';
 });
