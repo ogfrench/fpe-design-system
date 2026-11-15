@@ -5,7 +5,6 @@ type FpeLogoProps = ComponentPropsWithoutRef<"svg"> & {
   title?: string
 }
 
-/** FPE identity mark. Brand artwork is not part of the software MIT grant. */
 export function FpeLogo({ variant = "gradient", title, ...props }: FpeLogoProps) {
   const gradientId = useId()
   const fill = variant === "white" ? "#FFFFFF" : variant === "black" ? "#000000" : variant === "inherit" ? "currentColor" : "var(--fpe-pink, #F23D9F)"
@@ -34,7 +33,6 @@ export function FpeLogo({ variant = "gradient", title, ...props }: FpeLogoProps)
   )
 }
 
-/** Optional byline for FPE-authored pages. Not a license attribution requirement. */
 export function FpeCredit() {
   return (
     <span className="inline-flex items-baseline gap-[.42em] font-sans text-[13px] font-medium leading-[1.4] text-current whitespace-nowrap">
