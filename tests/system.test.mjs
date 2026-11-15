@@ -318,5 +318,5 @@ test('routine CI and dependency policy updates do not trigger an immutable FPE r
   const workflow = read('.github/workflows/release.yml');
   const triggers = workflow.split('\npermissions:')[0];
   assert.match(triggers, /push:\s*\n\s*branches:\s*\[main\]/);
-  assert.match(triggers, /paths-ignore:\s*\n\s*-\s*'\.github\/\*\*'\s*\n\s*-\s*'socket\.yml'/);
+  assert.match(triggers, /paths-ignore:\s*\n\s*-\s*'\.github\/\*\*'\s*\n\s*-\s*'socket\.yml'\s*\n\s*-\s*'tests\/\*\*'/);
 });
