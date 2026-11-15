@@ -93,7 +93,11 @@ jobs:
             echo "$tag is already published for this exact commit with matching verified assets. No overwrite."
             exit 0
           fi
-          existing_tag_sha=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$tag" --jq '.object.sha' 2>/dev/null || true)
+          if existing_tag_sha=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$tag" --jq '.object.sha' 2>/dev/null); then
+            test -n "$existing_tag_sha" || { echo "::error::Tag lookup returned no SHA."; exit 1; }
+          else
+            existing_tag_sha=''
+          fi
           if [ -n "$existing_tag_sha" ] && [ "$existing_tag_sha" != "$GITHUB_SHA" ]; then
             echo "::error::$tag already belongs to $existing_tag_sha; this source is $GITHUB_SHA."
             exit 1
