@@ -4,6 +4,8 @@ Start at the [FPE Product Passport](docs/product-passport/README.md). Verify all
 
 The [DUNE Engineering handbook](https://github.com/ogfrench/agentic-coding-setup/blob/main/docs/dune.md) and [Agentic Workflow plugin](https://github.com/ogfrench/agentic-coding-setup/tree/main/plugins/agent-workflow) provide the engineering method, not installed privileges or a second architecture.
 
+**Code-first default:** do not write explanatory comments. When modifying code, remove redundant/stale nearby comments; preserve legally required notices, tool directives and indispensable external constraints. Fix behavior and tests first. Keep internal documentation to short, code-verified entrypoints and contracts; write user-facing documentation when requested.
+
 ## FPE paved path
 
 1. Choose the owning capability: token generation, static reference UI, shadcn registry, branded React compositions, plugin packaging or release.
