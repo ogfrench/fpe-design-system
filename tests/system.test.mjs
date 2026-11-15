@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import { strict as assert } from 'node:assert';
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, readdirSync, existsSync } from 'node:fs';
 const read = (name) => readFileSync(new URL(`../${name}`, import.meta.url), 'utf8');
 const token = JSON.parse(read('tokens/fpe.tokens.json'));
 const registry = JSON.parse(read('registry.json'));
@@ -264,12 +264,12 @@ test('approved primary actions use a real gradient keyline, not a filled gradien
 
 
 test('handwritten FPE source contains no explanatory comments', () => {
-  const paths = [
-    'site/app.js', 'site/styles.css', 'css/fpe-motion.css',
-    'registry/fpe-hero.tsx', 'registry/fpe-logo.tsx',
-    'scripts/build.mjs', 'scripts/package.py'
-  ];
-  for (const path of paths) {
+  const files = (directory) => readdirSync(new URL(`../${directory}/`, import.meta.url), { withFileTypes: true }).flatMap((entry) => {
+    const file = `${directory}/${entry.name}`;
+    if (entry.isDirectory()) return files(file);
+    return /\.(?:mjs|js|jsx|ts|tsx|css|py)$/.test(file) && file !== 'css/fpe-theme.css' ? [file] : [];
+  });
+  for (const path of ['site', 'css', 'registry', 'scripts', 'tests'].flatMap(files)) {
     for (const [i, line] of read(path).split('\n').entries()) {
       const text = line.trimStart();
       const codeComment = /^(\/\/|\/\*|\*\s)/.test(text);
