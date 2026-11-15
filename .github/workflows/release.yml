@@ -13,10 +13,10 @@ jobs:
     outputs:
       version: ${{ steps.version.outputs.version }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: '22'
       - name: Read release version
@@ -34,7 +34,7 @@ jobs:
           cd out
           sha256sum -c "SHA256SUMS-${{ steps.version.outputs.version }}.txt"
       - name: Upload validated build for review
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: fpe-validated-build
           path: |
@@ -52,11 +52,11 @@ jobs:
     env:
       VERSION: ${{ needs.verify.outputs.version }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
       - name: Download release artifacts verified by same-commit job
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: fpe-validated-build
           path: verified
