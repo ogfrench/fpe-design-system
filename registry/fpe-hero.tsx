@@ -6,7 +6,6 @@ type FpeHeroProps = {
   href?: string
 }
 
-/** FPE editorial brand block. Existing shadcn components still own product interactions. */
 export function FpeHero({
   title = "Distinct by design.",
   description = "FPE brings precision, character and considered motion to shadcn, React and the open web.",

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import { strict as assert } from 'node:assert';
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, readdirSync, existsSync } from 'node:fs';
 const read = (name) => readFileSync(new URL(`../${name}`, import.meta.url), 'utf8');
 const token = JSON.parse(read('tokens/fpe.tokens.json'));
 const registry = JSON.parse(read('registry.json'));
@@ -260,4 +260,22 @@ test('approved primary actions use a real gradient keyline, not a filled gradien
   assert.match(hero, /linear-gradient\(var\(--background\), var\(--background\)\) padding-box/);
   assert.match(hero, /border-transparent/);
   assert.match(docs, /1px perimeter/);
+});
+
+
+test('handwritten FPE source contains no explanatory comments', () => {
+  const files = (directory) => readdirSync(new URL(`../${directory}/`, import.meta.url), { withFileTypes: true }).flatMap((entry) => {
+    const file = `${directory}/${entry.name}`;
+    if (entry.isDirectory()) return files(file);
+    return /\.(?:mjs|js|jsx|ts|tsx|css|py)$/.test(file) && file !== 'css/fpe-theme.css' ? [file] : [];
+  });
+  for (const path of ['site', 'css', 'registry', 'scripts', 'tests'].flatMap(files)) {
+    for (const [i, line] of read(path).split('\n').entries()) {
+      const text = line.trimStart();
+      const codeComment = /^(\/\/|\/\*|\*\s)/.test(text);
+      const pythonComment = path.endsWith('.py') && /^#(?!\!)/.test(text);
+      const directive = /^\/\/\s*(?:@ts-|eslint-|prettier-ignore)|^\/\*\s*(?:!|@license)|^#\s*(?:type:|noqa|pragma:|coding[:=])/.test(text);
+      assert.ok(!(codeComment || pythonComment) || directive, `${path}:${i + 1}: explanatory comment`);
+    }
+  }
 });

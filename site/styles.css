@@ -1,4 +1,3 @@
-/* FPE: gradient-led brand expression over precise black/white product UI. */
 :root { color-scheme: light; }
 :root.dark, [data-theme="dark"] { color-scheme: dark; }
 *, *::before, *::after { box-sizing: border-box; }
@@ -17,7 +16,6 @@ p { text-wrap: pretty; }
 .site-shell { max-width: 1920px; margin: auto; }
 .section-wrap { max-width: 1600px; padding-inline: clamp(24px, 5.4vw, 92px); margin-inline: auto; }
 
-/* Navigation uses product conventions, not marketing chrome. */
 .site-header { height: 76px; padding-inline: clamp(24px, 5.4vw, 92px); display: flex; align-items: center; gap: 18px; border-bottom: 1px solid var(--border); background: var(--background); position: sticky; top: 0; z-index: 20; }
 .brand { display: inline-flex; gap: 10px; align-items: center; white-space: nowrap; font-size: 19px; font-weight: 700; letter-spacing: -.02em; line-height: 1.2; }
 .brand-mark { width: 28px; height: 24px; object-fit: contain; }
@@ -33,11 +31,9 @@ p { text-wrap: pretty; }
 .github-link { border-bottom: 1px solid currentColor; }
 .menu-toggle { display: none; }
 
-/* Typographic scale: IBM Plex's default metrics deserve breathing room. */
 .hero { padding-top: clamp(68px, 8vw, 128px); }
 .hero-intro { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(260px, .6fr); gap: clamp(32px, 6vw, 110px); align-items: end; padding-bottom: clamp(48px, 6vw, 80px); }
 h1 { max-width: 890px; font-size: clamp(54px, 6.6vw, var(--fpe-size-display)); line-height: var(--fpe-leading-display); letter-spacing: var(--fpe-tracking-display); font-weight: var(--fpe-weight-display); }
-/* Brand color is a gradient treatment, never a flat fuchsia glyph. */
 .fpe-gradient-text, h1 span, .section-heading h2 span, .type-big span, .pill-pink {
   color: transparent;
   background: var(--fpe-gradient-text);
@@ -51,7 +47,6 @@ h1 { max-width: 890px; font-size: clamp(54px, 6.6vw, var(--fpe-size-display)); l
 .hero-details > p { font-size: clamp(16px, 1.4vw, 19px); line-height: 1.55; letter-spacing: -.005em; color: var(--muted-foreground); max-width: 430px; }
 .hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 24px; margin-top: 30px; }
 .button-primary, .button-outline, .button-ghost { min-height: 45px; display: inline-flex; align-items: center; justify-content: center; gap: 16px; padding: 10px 17px; border-radius: 3px; border: 1px solid transparent; font-size: 13px; font-weight: 600; line-height: 1.3; transition: background .16s ease, color .16s ease, border-color .16s ease, transform .16s ease; }
-/* FPE primary action: the approved keyline variant. Gradient stays on the perimeter and arrow. */
 .button-primary {
   position: relative;
   background: linear-gradient(var(--background), var(--background)) padding-box, var(--fpe-gradient-brand) border-box;
@@ -102,7 +97,6 @@ h1 { max-width: 890px; font-size: clamp(54px, 6.6vw, var(--fpe-size-display)); l
 .preview-control input:focus-visible { outline-offset: 2px; }
 .preview-response { margin-top: 15px; color: var(--muted-foreground); font: 400 11px/1.5 var(--fpe-font-mono); }
 
-/* Editorial section grid: no forced line breaks, fake labels or card effects. */
 .content-section { padding-top: clamp(88px, 9vw, 132px); }
 .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 56px; padding-bottom: 30px; margin-bottom: 32px; border-bottom: 1px solid var(--border); }
 .section-heading h2 { max-width: 900px; font-size: clamp(40px, 4.8vw, var(--fpe-size-heading)); line-height: var(--fpe-leading-heading); letter-spacing: var(--fpe-tracking-heading); font-weight: var(--fpe-weight-heading); }
@@ -173,7 +167,6 @@ h1 { max-width: 890px; font-size: clamp(54px, 6.6vw, var(--fpe-size-display)); l
 .integration-footer p { color: var(--muted-foreground); font-size: 13px; }
 .integration-footer a { border-bottom: 1px solid currentColor; font-size: 13px; padding-bottom: 3px; }
 .integration-footer a:hover { text-decoration: underline; text-underline-offset: 5px; }
-/* Quiet sign-off. No additional logo lockup, version text, or badge. */
 .site-footer { display: flex; justify-content: flex-end; align-items: center; padding-block: 29px; margin-top: 100px; border-top: 1px solid var(--border); }
 .design-credit { display: inline-flex; align-items: baseline; gap: .42em; color: var(--muted-foreground); font-size: 13px; font-weight: 500; line-height: 1.4; white-space: nowrap; }
 .design-credit-mark { width: auto; height: 9px; flex: none; fill: currentColor; }
