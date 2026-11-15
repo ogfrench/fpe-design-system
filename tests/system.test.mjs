@@ -303,6 +303,8 @@ test('release tag lookup uses the command exit status, not a 404 response body',
   ]) {
     const script = [
       'set -euo pipefail',
+      'GITHUB_REPOSITORY=test/repo',
+      'tag=v2026.11.5',
       `gh() { printf '%s\\n' '${response}'; return ${status}; }`,
       lookup,
       `test "$existing_tag_sha" = '${expected}'`
