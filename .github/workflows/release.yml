@@ -3,6 +3,10 @@ name: FPE release
 on:
   push:
     branches: [main]
+    # No product bytes change when only CI/security policy changes.
+    paths-ignore:
+      - '.github/**'
+      - 'socket.yml'
 
 permissions:
   contents: read
