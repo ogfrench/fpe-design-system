@@ -96,7 +96,6 @@ for (const item of registry.items) {
 write('dist/r/registry.json', JSON.stringify(registry, null, 2) + '\n');
 console.log(`FPE build: ${shadcnKeys.length} semantic tokens/mode, ${registry.items.length} registry items, static docs ready`);
 
-// Portable offline snapshot: CSS, JavaScript and brand SVGs embedded in one HTML.
 const escaped = (value) => value.replaceAll('</style', '<\\/style').replaceAll('</script', '<\\/script');
 let offline = read('site/index.html');
 for (const stylesheet of ['css/fpe-theme.css', 'css/fpe-motion.css', 'styles.css']) {
