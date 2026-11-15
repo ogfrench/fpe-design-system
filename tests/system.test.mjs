@@ -306,7 +306,7 @@ test('release tag lookup uses the command exit status, not a 404 response body',
       `gh() { printf '%s\\n' '${response}'; return ${status}; }`,
       lookup,
       `test "$existing_tag_sha" = '${expected}'`
-    ].join('\\n');
+    ].join(String.fromCharCode(10));
     execFileSync('bash', ['-c', script], { stdio: 'pipe' });
   }
 });
