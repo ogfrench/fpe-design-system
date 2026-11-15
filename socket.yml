@@ -1,0 +1,7 @@
+# Socket runs as a GitHub App; this file alone does not install the app.
+version: 2
+
+githubApp:
+  enabled: true
+  pullRequestAlertsEnabled: true
+  projectReportsEnabled: true
