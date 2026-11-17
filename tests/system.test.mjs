@@ -320,3 +320,29 @@ test('routine CI and dependency policy updates do not trigger an immutable FPE r
   assert.match(triggers, /push:\s*\n\s*branches:\s*\[main\]/);
   assert.match(triggers, /paths-ignore:\s*\n\s*-\s*'\.github\/\*\*'\s*\n\s*-\s*'socket\.yml'\s*\n\s*-\s*'tests\/\*\*'/);
 });
+
+test('Claude upload archive has one manifest, one skill and supported text references',()=>{
+  execFileSync('python3',['scripts/package.py']);
+  const version=JSON.parse(read('package.json')).version;
+  const validator=`import json,sys,zipfile,re
+with zipfile.ZipFile(sys.argv[1]) as z:
+ names=z.namelist()
+ assert z.testzip() is None
+ assert len(names)==len(set(names))
+ assert '.claude-plugin/plugin.json' in names
+ assert 'skills/fpe-design/SKILL.md' in names
+ assert all(n.startswith('skills/') or n=='.claude-plugin/plugin.json' for n in names)
+ assert all(n.endswith(('.md','.txt','.json')) for n in names)
+ assert all(re.fullmatch(r'[A-Za-z0-9_ .\\-/(),]+',n) for n in names)
+ manifest=json.loads(z.read('.claude-plugin/plugin.json'))
+ assert manifest['name']=='fpe-design-system'
+ assert manifest['version']==sys.argv[2]
+ assert 'icon' not in manifest
+ assert z.read('skills/fpe-design/SKILL.md').startswith(b'---\\nname: fpe-design\\n')
+ assert 'skills/fpe-design/references/tokens/fpe.tokens.json' in names
+ assert 'skills/fpe-design/references/css/fpe-theme.css.txt' in names
+ assert 'skills/fpe-design/references/assets/brand/fpe-mark.svg.txt' in names
+print('ok')`;
+  const result=execFileSync('python3',['-c',validator,`out/fpe-design-system-v${version}.zip`,version],{encoding:'utf8'});
+  assert.equal(result.trim(),'ok');
+});
