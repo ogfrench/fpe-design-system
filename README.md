@@ -2,7 +2,7 @@
 
 **Hypermodern Expressive**: FPE brand identity, a shadcn/ui-compatible color and type layer, deliberate motion, black/white identity with controlled fuchsia-to-violet gradients, a responsive HTML reference, and reusable Claude/ChatGPT skills.
 
-> **Published foundation release: [v2026.11.3](https://github.com/ogfrench/fpe-design-system/releases/tag/v2026.11.3)** (13 November 2026). GitHub provides source, Claude and ChatGPT ZIP artifacts with checksums. FPE remains a theme, brand asset kit, interactive HTML guide and optional React blocks, not a replacement for shadcn/ui. Published archives do not establish end-to-end consumer installation or real assistant-host activation; see the [compatibility matrix](docs/compatibility.md).
+> **Latest release: [v2026.11.6](https://github.com/ogfrench/fpe-design-system/releases/tag/v2026.11.6)** (17 November 2026). GitHub provides source, Claude and ChatGPT ZIP artifacts with checksums. FPE remains a theme, brand asset kit, interactive HTML guide and optional React blocks, not a replacement for shadcn/ui. Published archives do not establish end-to-end consumer installation or real assistant-host activation; see the [compatibility matrix](docs/compatibility.md).
 
 ## What is included
 

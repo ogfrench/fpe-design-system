@@ -81,7 +81,7 @@ jobs:
               exit 1
             fi
             existing_assets=$(gh release view "$tag" --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name')
-            for asset in "fpe-design-system-source-v${version}.zip" "fpe-claude-v${version}.zip" "fpe-chatgpt-v${version}.zip" "SHA256SUMS-${version}.txt"; do
+            for asset in "fpe-design-system-source-v${version}.zip" "fpe-design-system-v${version}.zip" "fpe-chatgpt-v${version}.zip" "SHA256SUMS-${version}.txt"; do
               if ! grep -Fxq "$asset" <<< "$existing_assets"; then
                 echo "::error::$tag points at this commit but is missing $asset."
                 exit 1
@@ -115,7 +115,7 @@ jobs:
           gh release create "$tag" \
             --verify-tag \
             "verified/out/fpe-design-system-source-v${version}.zip" \
-            "verified/out/fpe-claude-v${version}.zip" \
+            "verified/out/fpe-design-system-v${version}.zip" \
             "verified/out/fpe-chatgpt-v${version}.zip" \
             "verified/out/SHA256SUMS-${version}.txt" \
             --repo "$GITHUB_REPOSITORY" \

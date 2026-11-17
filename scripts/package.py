@@ -36,18 +36,19 @@ def pack(name, entries):
 version = json.loads((ROOT / 'package.json').read_text())['version']
 source = [(str(path.relative_to(ROOT)), path.read_bytes()) for path in source_files()]
 pack(f'fpe-design-system-source-v{version}.zip', source)
-claude = []
-for path in (ROOT / 'plugins/claude').rglob('*'):
-    if path.is_symlink():
-        raise ValueError(f'Symlinked Claude plugin entry: {path}')
-    if path.suffix == '.png':
-        continue
-    if path.is_file():
-        claude.append((str(path.relative_to(ROOT / 'plugins/claude')), path.read_bytes()))
+claude_root = ROOT / 'plugins/claude'
+manifest = json.loads((claude_root / '.claude-plugin/plugin.json').read_text())
+manifest.pop('icon', None)
+claude = [
+    ('.claude-plugin/plugin.json', (json.dumps(manifest, indent=2) + '\n').encode()),
+    ('skills/fpe-design/SKILL.md', (claude_root / 'skills/fpe-design/SKILL.md').read_bytes()),
+]
 for name, data in source:
-    if name == 'tokens/fpe.tokens.json' or name.startswith('css/') or name.startswith('assets/brand/') or name.startswith('docs/'):
+    if name == 'tokens/fpe.tokens.json' or (name.startswith('docs/') and name.endswith('.md')):
         claude.append(('skills/fpe-design/references/' + name, data))
-pack(f'fpe-claude-v{version}.zip', sorted(claude))
+    elif name.startswith('css/') or (name.startswith('assets/brand/') and name.endswith('.svg')):
+        claude.append(('skills/fpe-design/references/' + name + '.txt', data))
+pack(f'fpe-design-system-v{version}.zip', sorted(claude))
 chatgpt = []
 for path in (ROOT / 'plugins/chatgpt').rglob('*'):
     if path.is_symlink():
@@ -63,7 +64,7 @@ for name, data in source:
 pack(f'fpe-chatgpt-v{version}.zip', sorted(chatgpt))
 
 from hashlib import sha256
-artifacts = [OUT / f'fpe-design-system-source-v{version}.zip', OUT / f'fpe-claude-v{version}.zip', OUT / f'fpe-chatgpt-v{version}.zip']
+artifacts = [OUT / f'fpe-design-system-source-v{version}.zip', OUT / f'fpe-design-system-v{version}.zip', OUT / f'fpe-chatgpt-v{version}.zip']
 checksum_path = OUT / f'SHA256SUMS-{version}.txt'
 checksum_path.write_text(''.join(f'{sha256(item.read_bytes()).hexdigest()}  {item.name}\n' for item in artifacts))
 print(f'{checksum_path.name}: SHA256 for {len(artifacts)} release assets')
