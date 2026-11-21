@@ -84,6 +84,9 @@ jobs:
               *) echo "Unexpected changed path: $f"; exit 1 ;;
             esac
           done < <(git diff --cached --name-only)
-          git diff --cached --check
+          # Vendored upstream Markdown contains intentional line-break spaces and blank lines.
+          # Verify exact copies via the manifest, source pin and repeat-apply checks above.
+          # Enforce whitespace hygiene on project-owned setup and instructions only.
+          git diff --cached --check -- AGENTS.md CLAUDE.md .claude/agentic-workflow-sync.json .claude/settings.json .claude/claude-code-setup.json
           git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'chore: sync Agentic Workflow managed copies'
           git push origin "HEAD:docs/reconcile-release-and-compatibility-20261117"
