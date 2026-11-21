@@ -76,6 +76,8 @@ FPE uses calendar versioning (`YYYY.M.RELEASE`), beginning with `2026.11.3`. The
 
 Start with the [Product Passport](docs/product-passport/README.md), [AGENTS.md](AGENTS.md) and [compatibility matrix](docs/compatibility.md); use the [full DUNE handbook](https://github.com/ogfrench/agentic-coding-setup/blob/main/docs/dune.md) and [Agentic Workflow plugin](https://github.com/ogfrench/agentic-coding-setup/tree/main/plugins/agent-workflow) to navigate code, test real behavior and reconcile evidence. These links do not install the plugin or prove consumer compatibility.
 
+**Repository Agentic Workflow:** This PR vendors the shared engineering skills and a project-scoped knowledge hook under `.claude/`. [`AGENTS.md`](AGENTS.md) remains the only root instruction authority; [the sync policy](.claude/agentic-workflow-sync.json) records that choice and [the managed-copy manifest](.claude/claude-code-setup.json) pins the upstream source revision. Existing FPE brand, accessibility and release rules still apply. This does not automatically enable third-party Claude plugins, install a user-level plugin or establish actual Next.js/Vite consumer compatibility.
+
 ## Governance
 
 - No third-party font binaries or paid shadcn assets bundled.
