@@ -8,6 +8,12 @@ on:
       - '.github/**'
       - 'socket.yml'
       - 'tests/**'
+      # Engineering configuration and prose do not change versioned FPE artifacts.
+      - '.claude/**'
+      - 'AGENTS.md'
+      - 'CLAUDE.md'
+      - 'README.md'
+      - 'docs/**'
 
 permissions:
   contents: read
