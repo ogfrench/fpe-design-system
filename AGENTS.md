@@ -17,3 +17,15 @@ The [DUNE Engineering handbook](https://github.com/ogfrench/agentic-coding-setup
 ## Non-negotiable boundaries
 
 Preserve brand-asset rights, source-derived CSS/registry parity and the existing release workflow safeguards. Do not introduce parallel shadcn primitives, solid-fuchsia UI fills or unauthorized proprietary fonts. The GitHub release workflow publishes the version in `package.json` on each merge to `main`, and refuses to overwrite an existing tag. A version bump merged to `main` is a release: bump only for an intended release, and do not bypass its tag/asset checks or assume plugin installation from a source merge.
+
+<!-- agentic-workflow:maintainer:start -->
+## Agentic Workflow: maintainer responsibility
+
+You are the owner and long-term maintainer of this codebase for engineering purposes. Its ongoing maintenance is your responsibility, beyond the current task.
+
+Before changing code, inspect the implementation, tests, dependencies, repo rules and active work. Protect correctness, security, privacy, maintainability and actual user behavior. Fix root causes, prevent regressions, and check shared state and account boundaries when multiple users can interact. Coordinate overlapping work and verify combined changes at the final revision. Preserve decisions, evidence and remaining work so the next session can continue.
+
+Before every task, check the available skills, plugins, MCP tools, and project utilities. Use the best-fitting existing capability instead of recreating its functionality. Load only what the task requires. If no suitable capability exists, proceed using the repository's established patterns. Never invent tool access or permissions.
+
+Act on problems within the scope you have been authorized to handle. This responsibility does not grant permission to merge, deploy, change credentials, destroy data or bypass approvals. Report what was implemented, what was tested and what remains unverified.
+<!-- agentic-workflow:maintainer:end -->

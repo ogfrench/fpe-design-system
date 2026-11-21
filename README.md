@@ -2,7 +2,7 @@
 
 **Hypermodern Expressive**: FPE brand identity, a shadcn/ui-compatible color and type layer, deliberate motion, black/white identity with controlled fuchsia-to-violet gradients, a responsive HTML reference, and reusable Claude/ChatGPT skills.
 
-> **Latest release: [v2026.11.6](https://github.com/ogfrench/fpe-design-system/releases/tag/v2026.11.6)** (17 November 2026). GitHub provides source, Claude and ChatGPT ZIP artifacts with checksums. FPE remains a theme, brand asset kit, interactive HTML guide and optional React blocks, not a replacement for shadcn/ui. Published archives do not establish end-to-end consumer installation or real assistant-host activation; see the [compatibility matrix](docs/compatibility.md).
+> **Latest confirmed release: [v2026.11.6](https://github.com/ogfrench/fpe-design-system/releases/tag/v2026.11.6)** (17 November 2026); see [latest GitHub releases](https://github.com/ogfrench/fpe-design-system/releases/latest) for subsequent versions. This release contains source, Claude and ChatGPT ZIP artifacts with checksums. FPE remains a theme, brand asset kit, interactive HTML guide and optional React blocks, not a replacement for shadcn/ui. Published archives do not establish successful Next.js/Vite consumer installation, browser accessibility acceptance, assistant-host activation or verified production deployment; see the [compatibility matrix](docs/compatibility.md).
 
 ## What is included
 
@@ -75,6 +75,8 @@ FPE uses calendar versioning (`YYYY.M.RELEASE`), beginning with `2026.11.3`. The
 ## Engineering with DUNE
 
 Start with the [Product Passport](docs/product-passport/README.md), [AGENTS.md](AGENTS.md) and [compatibility matrix](docs/compatibility.md); use the [full DUNE handbook](https://github.com/ogfrench/agentic-coding-setup/blob/main/docs/dune.md) and [Agentic Workflow plugin](https://github.com/ogfrench/agentic-coding-setup/tree/main/plugins/agent-workflow) to navigate code, test real behavior and reconcile evidence. These links do not install the plugin or prove consumer compatibility.
+
+**Repository Agentic Workflow:** This PR vendors the shared engineering skills and a project-scoped knowledge hook under `.claude/`. [`AGENTS.md`](AGENTS.md) remains the only root instruction authority; [the sync policy](.claude/agentic-workflow-sync.json) records that choice and [the managed-copy manifest](.claude/claude-code-setup.json) pins the upstream source revision. Existing FPE brand, accessibility and release rules still apply. This does not automatically enable third-party Claude plugins, install a user-level plugin or establish actual Next.js/Vite consumer compatibility.
 
 ## Governance
 
