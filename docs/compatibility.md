@@ -13,7 +13,7 @@
 | ChatGPT | Private skills-only plugin | Versioned ZIP in GitHub Releases; private installation/activation remains separate and unverified |
 | Figma Starter | Visual reference, limited native modes | Staging exists; audit ongoing |
 
-[GitHub Releases](https://github.com/ogfrench/fpe-design-system/releases) contains the published Claude and ChatGPT ZIPs, source archive and checksums. Check the actual tag and SHA rather than assuming every source commit was published. Publication establishes archive availability only; the source build, consumer fixture tests, and actual assistant-host behavior must be recorded independently.
+[Latest GitHub Release](https://github.com/ogfrench/fpe-design-system/releases/latest) and the [release archive](https://github.com/ogfrench/fpe-design-system/releases) list source, Claude and ChatGPT ZIPs and checksums (last source-verified: v2026.11.6, 17 November 2026). Check actual tags and SHAs rather than assuming every source commit was published. Publication establishes archive availability only; source builds, consumer fixture tests and actual assistant-host behavior must be verified separately.
 
 “100% compatible” will only apply to a specific validated matrix at a specific release. Do not infer support for all upstream versions, every headless primitive behavior, or unspecified frameworks from the presence of CSS tokens.
 
