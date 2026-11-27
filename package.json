@@ -1,7 +1,7 @@
 {
   "name": "fpe-design-system",
   "private": true,
-  "version": "2026.11.6",
+  "version": "2026.11.7",
   "description": "FPE Hypermodern Expressive design system: shadcn theme, motion, docs and AI skills",
   "type": "module",
   "scripts": {
