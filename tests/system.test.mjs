@@ -73,6 +73,10 @@ test('ChatGPT and Claude packages expose the same named FPE skill',()=>{
   const b=read('plugins/chatgpt/skills/fpe-design/SKILL.md');
   assert.equal(a,b);
   assert.ok(a.startsWith('---\nname: fpe-design\n'));
+  for(const rule of ['Decorative eyebrows','Decorative colored side borders','Random italicized headline words','Generic fonts','Excessive cards','Redundant blurbs','Blinking status dots','uppercase labels']){
+    assert.ok(a.includes(rule), `Missing standalone visual composition rule: ${rule}`);
+  }
+  assert.ok(a.includes('Preserve the specified 2px FPE gradient edge'));
   assert.equal(JSON.parse(read('plugins/chatgpt/plugin.json')).name,'fpe-design-system');
   assert.equal(JSON.parse(read('plugins/claude/.claude-plugin/plugin.json')).name,'fpe-design-system');
 });
